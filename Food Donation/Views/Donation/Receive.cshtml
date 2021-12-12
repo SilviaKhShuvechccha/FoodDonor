@@ -1,0 +1,25 @@
+﻿@{ 
+    var donationId = ViewBag.donationId;
+}
+<aside class="col-sm-4 mx-auto">
+    <div class="card">
+        <article class="card-body">
+            <form action="Delivery" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="DonationId" value="@donationId" />
+                <div class="form-group">
+                    <label>Delivery Man Name</label>
+                    <input name="DeliveryManName" class="form-control" placeholder="Name" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Delivery Man Phone</label>
+                    <input name="DeliveryManPhone" class="form-control" placeholder="Food Description" type="text">
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Receive  </button>
+                </div>
+            </form>
+        </article>
+    </div>
+</aside>
+

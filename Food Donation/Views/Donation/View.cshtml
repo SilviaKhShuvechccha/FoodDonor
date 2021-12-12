@@ -1,0 +1,85 @@
+﻿@model Food_Donation.Models.Donate
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var deliveryMan = ViewBag.deliveryMan;
+}
+
+<div>
+    <h4>Donation Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Donation ID
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DonationId
+        </dd>
+        <dt class="col-sm-2">
+            Donation Title
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DonationTitle
+        </dd>
+        <dt class="col-sm-2">
+            Food Description
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FoodDescription
+        </dd>
+        <dt class="col-sm-2">
+            Food Weight
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FoodWeight
+        </dd>
+        <dt class="col-sm-2">
+            Contact No
+        </dt>
+        <dd class="col-sm-10">
+            @Model.ContactNo
+        </dd>
+        <dt class="col-sm-2">
+            Location
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Location
+        </dd>
+        <dt class="col-sm-2">
+            DonatedBy
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DonorName
+        </dd>
+        <dt class="col-sm-2">
+            DonationStatus
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DonationStatus
+        </dd>
+        @if (deliveryMan != null)
+        {
+            <dt class="col-sm-2">
+                DeliveryMan Name
+            </dt>
+            <dd class="col-sm-10">
+                @deliveryMan.DeliveryManName
+            </dd>
+            <dt class="col-sm-2">
+                DeliveryMan Phone
+            </dt>
+            <dd class="col-sm-10">
+                @deliveryMan.DeliveryManPhone
+            </dd>
+
+        }
+    </dl>
+</div>
+
+
+
+
+<div>
+    <a href="/home/Index">Back to List</a>
+</div>

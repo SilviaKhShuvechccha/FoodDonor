@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Food Donation</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Food Donation</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        @if (Context.Session.GetString("role") != 2 + "")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Donation" asp-action="Create">Donate</a>
+                            </li>
+
+                        }
+                        @if (Context.Session.GetString("username") == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Create">Signup</a>
+                            </li>
+
+                        }
+
+                        <li class="nav-item">
+                            @if (Context.Session.GetString("username") != null)
+                            {
+                                <div class="dropdown show">
+
+                                    <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @Context.Session.GetString("username")
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        @*<a class="dropdown-item" href="#">Profile</a>
+                                            <a class="dropdown-item" href="#">Settings</a>*@
+                                        <a class="dropdown-item" href="/LoginSystem/Logout">Logout</a>
+
+                                    </div>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="LoginSystem" asp-action="Login">Login</a>
+
+                            }
+
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-info">
+                    @TempData["Message"]
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted text-center">
+        <div class="container">
+            &copy; 2021 - Food Donor BD
+        </div>
+    </footer>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

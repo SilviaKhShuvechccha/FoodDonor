@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Food_Donation.Models.Donate>
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="card-deck">
+    @foreach (var employee in Model)
+    {
+    <div class="card m-3">
+        <div class="card-header">
+            <h3>@employee.DonationTitle</h3>
+        </div>
+        <img class="card-img-top image_thumbnil" src="~@employee.FileUrl" asp-append-version="true" />
+        <div><p class="text-center">Donation Status: @employee.DonationStatus</p></div>
+        <div><p class="text-center">Donated By: @employee.DonorName</p></div>
+
+        <div class="card-footer text-center">
+            <a href="/donation/view/@employee.DonationId" class="btn btn-primary m-1">View</a>
+
+            @if (Context.Session.GetString("role") == 2 + "")
+            {
+                <a class="btn btn-primary m-1" href="/donation/receive/@employee.DonationId">Receive</a>
+                @*<a class="btn btn-danger m-1" href="/donation/decline/@employee.DonationId">Decline</a>*@
+
+            }
+            else if (Context.Session.GetString("role") == 1 + "")
+            {
+                @*<a class="btn btn-primary m-1" href="/donation/edit/@employee.DonationId">Edit</a>*@
+                <a class="btn btn-danger m-1" href="/donation/delete/@employee.DonationId">Delete</a>
+            }
+
+        </div>
+    </div>
+    }
+</div>
